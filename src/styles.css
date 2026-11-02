@@ -1,4 +1,4 @@
-/* Global
+/* global
 --------------------------------------------------------------------------------------------- */
 
 *,
@@ -13,4 +13,92 @@ body {
     font-weight: 700;
     font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;
+}
+
+/* buttons
+--------------------------------------------------------------------------------------------- */
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+    grid-template-areas: 
+    "seven eight nine del"
+    "four five six plus"
+    "one two three minus"
+    "dot zero divide multiply"
+    "reset reset equal equal";
+}
+
+#btn-0{
+    grid-area: zero;
+}
+
+#btn-1{
+    grid-area: one;
+}
+
+#btn-2{
+    grid-area: two;
+}
+
+#btn-3{
+    grid-area: three;
+}
+
+#btn-4{
+    grid-area: four;
+}
+
+#btn-5{
+    grid-area: five;
+}
+
+#btn-6{
+    grid-area: six;
+}
+
+#btn-7{
+    grid-area: seven;
+}
+
+#btn-8{
+    grid-area: eight;
+}
+
+#btn-9{
+    grid-area: nine;
+}
+
+#btn-dot{
+    grid-area: dot;
+}
+
+#btn-plus{
+    grid-area: plus;
+}
+
+#btn-minus{
+    grid-area: minus;
+}
+
+#btn-multiplication{
+    grid-area: multiply;
+}
+
+#btn-division{
+    grid-area: divide;
+}
+
+#btn-equal{
+    grid-area: equal;
+}
+
+#btn-del{
+    grid-area: del;
+}
+
+#btn-reset{
+    grid-area: reset;
 }
