@@ -1,0 +1,16 @@
+/* Global
+--------------------------------------------------------------------------------------------- */
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+}

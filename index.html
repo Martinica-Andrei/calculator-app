@@ -9,10 +9,54 @@
 
   <title>Frontend Mentor | Calculator app</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
   <script src="src/main.ts" type="module" defer></script>
 </head>
 
 <body>
+  <header>
+    <h1>calc</h1>
+
+    <fieldset>
+      <legend>Theme</legend>
+      <label for="theme-1">1</label>
+      <input type="radio" id="theme-1" name="theme">
+      <label for="theme-2">2</label>
+      <input type="radio" id="theme-2" name="theme">
+      <label for="theme-3">3</label>
+      <input type="radio" id="theme-3" name="theme">
+    </fieldset>
+  </header>
+
+  <main>
+    <p id="operand-1"></p>
+    <p id="operand-2"></p>
+
+    <div class="buttons">
+      <button type="button" id="btn-1" class="btn-primary">1</button>
+      <button type="button" id="btn-2" class="btn-primary">2</button>
+      <button type="button" id="btn-3" class="btn-primary">3</button>
+      <button type="button" id="btn-4" class="btn-primary">4</button>
+      <button type="button" id="btn-5" class="btn-primary">5</button>
+      <button type="button" id="btn-6" class="btn-primary">6</button>
+      <button type="button" id="btn-7" class="btn-primary">7</button>
+      <button type="button" id="btn-8" class="btn-primary">8</button>
+      <button type="button" id="btn-9" class="btn-primary">9</button>
+      <button type="button" id="btn-dot" class="btn-primary">.</button>
+      <button type="button" id="btn-plus" class="btn-primary">+</button>
+      <button type="button" id="btn-minus" class="btn-primary">-</button>
+      <button type="button" id="btn-multiplication" class="btn-primary">x</button>
+      <button type="button" id="btn-division" class="btn-primary">/</button>
+      <button type="button" id="btn-equal" class="btn-hero">=</button>
+      <button type="button" id="btn-del" class="btn-secondary">del</button>
+      <button type="button" id="btn-reset" class="btn-secondary">reset</button>
+    </div>
+
+
+  </main>
 
 </body>
 
