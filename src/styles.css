@@ -49,6 +49,7 @@ button:hover {
     --text-1: hsl(221 14% 31%);
     --text-2: hsl(0 100% 100%);
     --text-3: hsl(0 100% 100%);
+    --text-header: var(--text-2);
 }
 
 .theme-2 {
@@ -68,6 +69,7 @@ button:hover {
     --text-1: hsl(60, 10%, 19%);
     --text-2: hsl(0, 100%, 100%);
     --text-3: hsl(0, 100%, 100%);
+    --text-header: var(--text-1);
 }
 
 .theme-3 {
@@ -87,6 +89,7 @@ button:hover {
     --text-1: hsl(52, 100%, 62%);
     --text-2: hsl(198, 20%, 13%);
     --text-3: hsl(0, 100%, 100%);
+    --text-header: var(--text-1);
 }
 
 /* main-header
@@ -99,12 +102,12 @@ button:hover {
 }
 
 h1 {
-    color: var(--text-2);
+    color: var(--text-header);
 }
 
 .theme-selector {
     border: 0;
-    color: var(--text-2);
+    color: var(--text-header);
     position: relative;
 }
 
@@ -165,7 +168,7 @@ h1 {
     padding: 20px;
     margin-bottom: 24px;
     border-radius: 8px;
-    color: var(--text-2);
+    color: var(--text-header);
     display: flex;
     flex-direction: column;
     align-items: flex-end;
