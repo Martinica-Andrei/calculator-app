@@ -26,7 +26,7 @@ const operatorToFuncMap = new Map<Operator, typeof add>([
 ]);
 
 export class Calculator {
-    private static readonly _numberRegex = /^(?:([1-9]+\d*)|0?(?!\d))\.?\d*$/;
+    private static readonly _numberRegex = /^[+\-]?(?:([1-9]+\d*)|0?(?!\d))\.?\d*$/;
     private readonly _numbers: [string, string] = ["", ""];
     private _activeNumberIndex: number = 0;
     private _operator: Operator | null = null;
@@ -39,6 +39,10 @@ export class Calculator {
         const operator = stringToOperatorMap.get(value);
 
         if (operator != undefined) {
+            if([Operator.Plus, Operator.Minus].includes(operator) && this._numbers[0].length === 0){
+                this._numbers[0] = value;
+                return;
+            }
             this.handleOperator(operator);
             return;
         }
@@ -64,7 +68,7 @@ export class Calculator {
     }
 
     private isNumberInvalid(number: string) {
-        return !Calculator._numberRegex.test(number);
+        return !Calculator._numberRegex.test(number) || Number.isNaN(parseFloat(number));
     }
 
     private handleOperator(operator: Operator) {
@@ -88,7 +92,7 @@ export class Calculator {
     }
 
     private handleNormalOperator(operator: Operator) {
-        if (this._activeNumberIndex > 0 || this.activeNumber.length === 0) {
+        if (this._activeNumberIndex > 0 || this.activeNumber.length === 0 || this.isNumberInvalid(this.activeNumber)) {
             return;
         }
         this._operator = operator;
