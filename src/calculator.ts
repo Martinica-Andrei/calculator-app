@@ -35,15 +35,7 @@ export class Calculator {
         this.reset();
     }
 
-    private get activeNumber() {
-        return this._numbers[this._activeNumberIndex];
-    }
-
-    private isNumberInvalid(number: string) {
-        return !Calculator._numberRegex.test(number);
-    }
-
-    private addLetter(value: string) {
+    public input(value: string) {
         const operator = stringToOperatorMap.get(value);
 
         if (operator != undefined) {
@@ -51,7 +43,20 @@ export class Calculator {
             return;
         }
 
+        const newNumber = this.activeNumber + value;
+        if (this.isNumberInvalid(newNumber)){
+            return;
+        }
 
+        this._numbers[this._activeNumberIndex] = newNumber;
+    }
+
+    private get activeNumber() {
+        return this._numbers[this._activeNumberIndex];
+    }
+
+    private isNumberInvalid(number: string) {
+        return !Calculator._numberRegex.test(number);
     }
 
     private handleOperator(operator: Operator) {
