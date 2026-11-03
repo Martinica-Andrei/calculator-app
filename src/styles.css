@@ -13,7 +13,21 @@ body {
     font-weight: 700;
     font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;
+    background-color: var(--main-background);
 }
+
+/* themes
+--------------------------------------------------------------------------------------------- */
+
+.theme-1 {
+    --main-background: hsl(222 26% 31%);
+    --secondary-background-1: hsl(223 31% 20%);
+    --secondary-background-2: hsl(224 36% 15%);
+}
+
+.theme-2 {}
+
+.theme-3 {}
 
 /* buttons
 --------------------------------------------------------------------------------------------- */
@@ -23,82 +37,82 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
     gap: 8px;
-    grid-template-areas: 
-    "seven eight nine del"
-    "four five six plus"
-    "one two three minus"
-    "dot zero divide multiply"
-    "reset reset equal equal";
+    grid-template-areas:
+        "seven eight nine del"
+        "four five six plus"
+        "one two three minus"
+        "dot zero divide multiply"
+        "reset reset equal equal";
 }
 
-#btn-0{
+#btn-0 {
     grid-area: zero;
 }
 
-#btn-1{
+#btn-1 {
     grid-area: one;
 }
 
-#btn-2{
+#btn-2 {
     grid-area: two;
 }
 
-#btn-3{
+#btn-3 {
     grid-area: three;
 }
 
-#btn-4{
+#btn-4 {
     grid-area: four;
 }
 
-#btn-5{
+#btn-5 {
     grid-area: five;
 }
 
-#btn-6{
+#btn-6 {
     grid-area: six;
 }
 
-#btn-7{
+#btn-7 {
     grid-area: seven;
 }
 
-#btn-8{
+#btn-8 {
     grid-area: eight;
 }
 
-#btn-9{
+#btn-9 {
     grid-area: nine;
 }
 
-#btn-dot{
+#btn-dot {
     grid-area: dot;
 }
 
-#btn-plus{
+#btn-plus {
     grid-area: plus;
 }
 
-#btn-minus{
+#btn-minus {
     grid-area: minus;
 }
 
-#btn-multiplication{
+#btn-multiplication {
     grid-area: multiply;
 }
 
-#btn-division{
+#btn-division {
     grid-area: divide;
 }
 
-#btn-equal{
+#btn-equal {
     grid-area: equal;
 }
 
-#btn-del{
+#btn-del {
     grid-area: del;
 }
 
-#btn-reset{
+#btn-reset {
     grid-area: reset;
 }
