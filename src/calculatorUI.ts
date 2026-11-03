@@ -28,8 +28,8 @@ function updateUI() {
     const numbers = calculator.numbers;
     const operator = calculator.operator;
 
-    operand1El.textContent = numbers[0] + convertOperatorToString(operator);
-    operand2El.textContent = numbers[1];
+    operand1El.textContent = processNumber(numbers[0]) + convertOperatorToString(operator);
+    operand2El.textContent = processNumber(numbers[1]);
 }
 
 function convertOperatorToString(operator: Operator | null): string {
@@ -43,4 +43,8 @@ function convertOperatorToString(operator: Operator | null): string {
     }
 
     return " " + str;
+}
+
+function processNumber(number : string){
+    return number.replace(".", ",");
 }
