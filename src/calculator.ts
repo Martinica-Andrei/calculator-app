@@ -88,6 +88,9 @@ export class Calculator {
     }
 
     private handleNormalOperator(operator: Operator) {
+        if (this._activeNumberIndex > 0 || this.activeNumber.length === 0) {
+            return;
+        }
         this._operator = operator;
         this._activeNumberIndex = 1;
     }
@@ -102,11 +105,17 @@ export class Calculator {
     }
 
     private removeLastCharFromActiveNumber() {
-        this._numbers[this._activeNumberIndex] = this.activeNumber.slice(0, this.activeNumber.length - 1);
+        if (this.activeNumber.length > 0) {
+            this._numbers[this._activeNumberIndex] = this.activeNumber.slice(0, this.activeNumber.length - 1);
+        }
+        else{
+            this._activeNumberIndex = 0;
+            this._operator = null;
+        }
     }
 
     private handleEqualOperator() {
-        if (this._activeNumberIndex === 0) {
+        if (this._numbers[1].length === 0) {
             return;
         }
 

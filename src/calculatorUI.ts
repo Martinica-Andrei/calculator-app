@@ -14,9 +14,9 @@ const operatorToStringMap = new Map<Operator, string>([
     [Operator.Division, "/"],
 ]);
 
-export function initCalculatorUI(){
+export function initCalculatorUI() {
     buttonsEl.addEventListener("click", e => {
-        if (e.target instanceof HTMLButtonElement){
+        if (e.target instanceof HTMLButtonElement) {
             const button = e.target as HTMLButtonElement;
             calculator.input(button.textContent);
             updateUI();
@@ -36,5 +36,11 @@ function convertOperatorToString(operator: Operator | null): string {
     if (operator == null) {
         return "";
     }
-    return operatorToStringMap.get(operator) ?? "";
+
+    const str = operatorToStringMap.get(operator);
+    if (str == null) {
+        return "";
+    }
+
+    return " " + str;
 }
