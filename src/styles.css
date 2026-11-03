@@ -7,13 +7,22 @@
     box-sizing: border-box;
 }
 
+* {
+    font-weight: 700;
+}
+
 body {
     margin: 0;
-    padding: 0;
+    padding: 24px;
     font-weight: 700;
     font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;
     background-color: var(--main-background);
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
 }
 
 /* themes
@@ -45,16 +54,24 @@ body {
 --------------------------------------------------------------------------------------------- */
 
 .buttons {
+    background-color: var(--secondary-background-1);
+    padding: 20px;
+    border-radius: 10px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
     grid-template-areas:
         "seven eight nine del"
         "four five six plus"
         "one two three minus"
         "dot zero divide multiply"
         "reset reset equal equal";
+}
+
+.buttons button {
+    padding: 12px 0;
+    border: 0;
+    border-radius: 8px;
 }
 
 #btn-0 {
@@ -129,17 +146,24 @@ body {
     grid-area: reset;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: var(--key-background-3);
     color: var(--text-1);
+    box-shadow: 0 4px var(--key-shadow-3);
+    font-size: 2rem;
 }
 
-.btn-secondary{
+.btn-secondary {
     background-color: var(--key-background-1);
     color: var(--text-2);
+    box-shadow: 0 4px var(--key-shadow-1);
+    text-transform: uppercase;
+    font-size: 1rem;
 }
 
-.btn-hero{
+.btn-hero {
     background-color: var(--key-background-2);
     color: var(--text-2);
+    box-shadow: 0 4px var(--key-shadow-2);
+    font-size: 1.2rem;
 }
