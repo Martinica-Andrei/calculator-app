@@ -48,6 +48,7 @@ button:hover {
 
     --text-1: hsl(221 14% 31%);
     --text-2: hsl(0 100% 100%);
+    --text-3: hsl(0 100% 100%);
 }
 
 .theme-2 {
@@ -66,9 +67,27 @@ button:hover {
 
     --text-1: hsl(60, 10%, 19%);
     --text-2: hsl(0, 100%, 100%);
+    --text-3: hsl(0, 100%, 100%);
 }
 
-.theme-3 {}
+.theme-3 {
+    --main-background: hsl(268, 75%, 9%);
+    --secondary-background-1: hsl(268, 71%, 12%);
+    --secondary-background-2: hsl(268, 71%, 12%);
+
+    --key-background-1: hsl(281, 89%, 26%);
+    --key-shadow-1: hsl(285, 91%, 52%);
+
+    --key-background-2: hsl(176, 100%, 44%);
+    --key-shadow-2: hsl(177, 92%, 70%);
+
+    --key-background-3: hsl(268, 47%, 21%);
+    --key-shadow-3: hsl(290, 70%, 36%);
+
+    --text-1: hsl(52, 100%, 62%);
+    --text-2: hsl(198, 20%, 13%);
+    --text-3: hsl(0, 100%, 100%);
+}
 
 /* main-header
 --------------------------------------------------------------------------------------------- */
@@ -150,7 +169,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap:16px;
+    gap: 16px;
     overflow: auto;
 }
 
@@ -281,18 +300,18 @@ h1 {
 
 .btn-secondary {
     background-color: var(--key-background-1);
-    color: var(--text-2);
+    color: var(--text-3);
     box-shadow: 0 4px var(--key-shadow-1);
     text-transform: uppercase;
     font-size: 1rem;
 }
 
 .btn-secondary:hover {
-    background-color: color-mix(in srgb, var(--key-background-1), var(--text-2) 10%);
+    background-color: color-mix(in srgb, var(--key-background-1), var(--text-3) 10%);
 }
 
 .btn-secondary:active {
-    background-color: color-mix(in srgb, var(--key-background-1), var(--text-2) 30%);
+    background-color: color-mix(in srgb, var(--key-background-1), var(--text-3) 30%);
 }
 
 .btn-hero {
