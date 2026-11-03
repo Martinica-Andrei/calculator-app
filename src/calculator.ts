@@ -1,3 +1,5 @@
+import BigNumber from "bignumber.js";
+
 export enum Operator {
     Plus,
     Minus,
@@ -39,7 +41,7 @@ export class Calculator {
         const operator = stringToOperatorMap.get(value);
 
         if (operator != undefined) {
-            if([Operator.Plus, Operator.Minus].includes(operator) && this._numbers[0].length === 0){
+            if ([Operator.Plus, Operator.Minus].includes(operator) && this._numbers[0].length === 0) {
                 this._numbers[0] = value;
                 return;
             }
@@ -47,7 +49,13 @@ export class Calculator {
             return;
         }
 
-        const newNumber = this.activeNumber + value;
+        let newNumber: string;
+        if (this.activeNumber === "0" && value !== ".") {
+            newNumber = value;
+        }
+        else {
+            newNumber = this.activeNumber + value;
+        }
         if (this.isNumberInvalid(newNumber)) {
             return;
         }
@@ -126,9 +134,9 @@ export class Calculator {
         const [a, b] = this._numbers.map(parseFloat);
         const operation = operatorToFuncMap.get(this._operator!)!;
 
-        let result = operation(a, b).toString();
+        let result = new BigNumber(operation(a, b)).toFixed();
 
-        if (["Infinity", "NaN"].includes(result)){
+        if (["infinity", "nan"].includes(result.toLowerCase())) {
             result = "";
         }
 

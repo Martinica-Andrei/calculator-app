@@ -35,3 +35,4 @@ Users should be able to:
 - CSS custom properties
 - Mobile-first workflow
 - TypeScript
+- BigNumber.js
