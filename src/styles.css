@@ -184,6 +184,7 @@ h1 {
     align-items: flex-end;
     gap: 16px;
     overflow: auto;
+    min-height: 100px;
 }
 
 .operands p {
