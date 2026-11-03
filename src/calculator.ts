@@ -108,7 +108,7 @@ export class Calculator {
         if (this.activeNumber.length > 0) {
             this._numbers[this._activeNumberIndex] = this.activeNumber.slice(0, this.activeNumber.length - 1);
         }
-        else{
+        else {
             this._activeNumberIndex = 0;
             this._operator = null;
         }
@@ -122,7 +122,11 @@ export class Calculator {
         const [a, b] = this._numbers.map(parseFloat);
         const operation = operatorToFuncMap.get(this._operator!)!;
 
-        const result = operation(a, b).toString();
+        let result = operation(a, b).toString();
+
+        if (["Infinity", "NaN"].includes(result)){
+            result = "";
+        }
 
         this.reset();
         this._numbers[0] = result;
