@@ -19,17 +19,23 @@
 </head>
 
 <body>
-  <header>
+  <header class="main-header">
     <h1>calc</h1>
 
-    <fieldset>
+    <fieldset class="theme-selector">
       <legend>Theme</legend>
-      <label for="theme-1">1</label>
-      <input type="radio" id="theme-1" name="theme">
-      <label for="theme-2">2</label>
-      <input type="radio" id="theme-2" name="theme">
-      <label for="theme-3">3</label>
-      <input type="radio" id="theme-3" name="theme">
+      <div>
+        <div class="theme-labels">
+          <label for="theme-1">1</label>
+          <label for="theme-2">2</label>
+          <label for="theme-3">3</label>
+        </div>
+        <div class="theme-inputs">
+          <input type="radio" id="theme-1" name="theme">
+          <input type="radio" id="theme-2" name="theme">
+          <input type="radio" id="theme-3" name="theme">
+        </div>
+      </div>
     </fieldset>
   </header>
 
