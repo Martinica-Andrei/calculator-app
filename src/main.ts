@@ -1,3 +1,3 @@
-import { setTheme, Theme } from "./themes";
+import { initRadioThemes } from "./radioThemes";
 
-setTheme(Theme.First);
+initRadioThemes();
