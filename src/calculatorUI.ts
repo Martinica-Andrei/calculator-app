@@ -30,6 +30,18 @@ function updateUI() {
 
     operand1El.textContent = processNumber(numbers[0]) + convertOperatorToString(operator);
     operand2El.textContent = processNumber(numbers[1]);
+
+    if (operator == null){
+        operand1El.classList.add("large-operand");
+        operand2El.classList.remove("large-operand");
+    }
+    else{
+        operand1El.classList.remove("large-operand");
+        operand2El.classList.add("large-operand");
+    }
+
+    operand1El.scrollLeft = Number.MAX_SAFE_INTEGER;
+    operand2El.scrollLeft = Number.MAX_SAFE_INTEGER;
 }
 
 function convertOperatorToString(operator: Operator | null): string {
