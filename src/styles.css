@@ -25,7 +25,7 @@ h1 {
     padding: 0;
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
 }
 
@@ -68,9 +68,7 @@ button:hover{
     --text-2: hsl(0, 100%, 100%);
 }
 
-.theme-3 {
-
-}
+.theme-3 {}
 
 /* buttons
 --------------------------------------------------------------------------------------------- */
@@ -176,8 +174,12 @@ button:hover{
     font-size: 2rem;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
     background-color: color-mix(in srgb, var(--key-background-3), var(--text-1) 10%);
+}
+
+.btn-primary:active {
+    background-color: color-mix(in srgb, var(--key-background-3), var(--text-1) 30%);
 }
 
 .btn-secondary {
@@ -188,8 +190,12 @@ button:hover{
     font-size: 1rem;
 }
 
-.btn-secondary:hover{
+.btn-secondary:hover {
     background-color: color-mix(in srgb, var(--key-background-1), var(--text-2) 10%);
+}
+
+.btn-secondary:active {
+    background-color: color-mix(in srgb, var(--key-background-1), var(--text-2) 30%);
 }
 
 .btn-hero {
@@ -199,6 +205,10 @@ button:hover{
     font-size: 1.2rem;
 }
 
-.btn-hero:hover{
+.btn-hero:hover {
     background-color: color-mix(in srgb, var(--key-background-2), var(--text-2) 10%);
+}
+
+.btn-hero:active{
+    background-color: color-mix(in srgb, var(--key-background-2), var(--text-2) 30%);
 }
