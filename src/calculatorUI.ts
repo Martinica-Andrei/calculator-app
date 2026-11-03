@@ -40,8 +40,7 @@ function updateUI() {
         operand2El.classList.add("large-operand");
     }
 
-    operand1El.scrollLeft = Number.MAX_SAFE_INTEGER;
-    operand2El.scrollLeft = Number.MAX_SAFE_INTEGER;
+    operand1El.parentElement!.scrollLeft = Number.MAX_SAFE_INTEGER;
 }
 
 function convertOperatorToString(operator: Operator | null): string {
