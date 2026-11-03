@@ -1,4 +1,4 @@
-enum Operator {
+export enum Operator {
     Plus,
     Minus,
     Multiplication,
@@ -44,11 +44,19 @@ export class Calculator {
         }
 
         const newNumber = this.activeNumber + value;
-        if (this.isNumberInvalid(newNumber)){
+        if (this.isNumberInvalid(newNumber)) {
             return;
         }
 
         this._numbers[this._activeNumberIndex] = newNumber;
+    }
+
+    public get numbers() {
+        return [...this._numbers];
+    }
+
+    public get operator() {
+        return this._operator;
     }
 
     private get activeNumber() {
