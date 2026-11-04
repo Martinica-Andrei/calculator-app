@@ -42,7 +42,7 @@ export class Calculator {
         const operator = stringToOperatorMap.get(value);
 
         if (operator != undefined) {
-            if ([Operator.Plus, Operator.Minus].includes(operator) && this._numbers[0].length === 0) {
+            if ([Operator.Plus, Operator.Minus].includes(operator) && ["+", "-", ""].includes(this._numbers[0])) {
                 this._numbers[0] = value;
                 this._previousValidInput = value;
                 return;
@@ -105,7 +105,11 @@ export class Calculator {
     }
 
     private handleNormalOperator(operator: Operator) {
-        if (this.activeNumber.length === 0 || this.isNumberInvalid(this.activeNumber)) {
+        if (this.activeNumber.length === 0){
+            this._operator = operator;
+            return;
+        }
+        if (this.isNumberInvalid(this.activeNumber)) {
             return;
         }
 
