@@ -20,11 +20,11 @@ const stringToOperatorMap = new Map<string, Operator>([
     ["reset", Operator.Reset],
 ])
 
-const operatorToFuncMap = new Map<Operator, typeof add>([
-    [Operator.Plus, add],
-    [Operator.Minus, subtract],
-    [Operator.Multiplication, multiply],
-    [Operator.Division, divide],
+const operatorToFuncMap = new Map<Operator, (a: BigNumber, b: BigNumber) => BigNumber>([
+    [Operator.Plus, (a, b) => a.plus(b)],
+    [Operator.Minus, (a, b) => a.minus(b)],
+    [Operator.Multiplication, (a, b) => a.multipliedBy(b)],
+    [Operator.Division, (a, b) => a.dividedBy(b)],
 ]);
 
 export class Calculator {
@@ -32,6 +32,7 @@ export class Calculator {
     private readonly _numbers: [string, string] = ["", ""];
     private _activeNumberIndex: number = 0;
     private _operator: Operator | null = null;
+    private _previousValidInput: string | Operator | null = null;
 
     constructor() {
         this.reset();
@@ -41,8 +42,9 @@ export class Calculator {
         const operator = stringToOperatorMap.get(value);
 
         if (operator != undefined) {
-            if ([Operator.Plus, Operator.Minus].includes(operator) && this._numbers[0].length === 0) {
+            if ([Operator.Plus, Operator.Minus].includes(operator) && ["+", "-", ""].includes(this._numbers[0])) {
                 this._numbers[0] = value;
+                this._previousValidInput = value;
                 return;
             }
             this.handleOperator(operator);
@@ -50,7 +52,7 @@ export class Calculator {
         }
 
         let newNumber: string;
-        if (this.activeNumber === "0" && value !== ".") {
+        if (this._previousValidInput === Operator.Equal || (this.activeNumber === "0" && value !== ".")) {
             newNumber = value;
         }
         else {
@@ -61,6 +63,7 @@ export class Calculator {
         }
 
         this._numbers[this._activeNumberIndex] = newNumber;
+        this._previousValidInput = value;
     }
 
     public get numbers() {
@@ -89,9 +92,11 @@ export class Calculator {
                 break;
             case Operator.Reset:
                 this.reset();
+                this._previousValidInput = operator;
                 break;
             case Operator.Delete:
                 this.removeLastCharFromActiveNumber();
+                this._previousValidInput = operator;
                 break;
             case Operator.Equal:
                 this.handleEqualOperator();
@@ -100,11 +105,23 @@ export class Calculator {
     }
 
     private handleNormalOperator(operator: Operator) {
-        if (this._activeNumberIndex > 0 || this.activeNumber.length === 0 || this.isNumberInvalid(this.activeNumber)) {
+        if (this.activeNumber.length === 0) {
+            if (this._activeNumberIndex === 1) {
+                this._operator = operator;
+            }
             return;
         }
-        this._operator = operator;
+        if (this.isNumberInvalid(this.activeNumber)) {
+            return;
+        }
+
+        if (this._activeNumberIndex === 1) {
+            this.applyOperation();
+        }
+
         this._activeNumberIndex = 1;
+        this._operator = operator;
+        this._previousValidInput = operator;
     }
 
     private reset() {
@@ -131,32 +148,14 @@ export class Calculator {
             return;
         }
 
-        const [a, b] = this._numbers.map(parseFloat);
-        const operation = operatorToFuncMap.get(this._operator!)!;
-
-        let result = new BigNumber(operation(a, b)).toFixed();
-
-        if (["infinity", "nan"].includes(result.toLowerCase())) {
-            result = "";
-        }
-
-        this.reset();
-        this._numbers[0] = result;
+        this.applyOperation();
+        this._previousValidInput = Operator.Equal;
     }
-}
 
-function add(a: number, b: number) {
-    return a + b;
-}
-
-function subtract(a: number, b: number) {
-    return a - b;
-}
-
-function multiply(a: number, b: number) {
-    return a * b;
-}
-
-function divide(a: number, b: number) {
-    return a / b;
+    private applyOperation() {
+        const [a, b] = this._numbers.map((n) => new BigNumber(n));
+        const result = operatorToFuncMap.get(this._operator!)!(a, b);
+        this.reset();
+        this._numbers[0] = result.isFinite() ? result.toFixed() : "";
+    }
 }

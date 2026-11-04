@@ -22,6 +22,15 @@ export function initCalculatorUI() {
             updateUI();
         }
     });
+
+    document.addEventListener("keydown", e => {
+        const key = filterKey(e.key);
+        if (key != undefined){
+            calculator.input(key);
+            updateUI();
+            e.preventDefault();
+        }
+    });
 }
 
 function updateUI() {
@@ -31,11 +40,11 @@ function updateUI() {
     operand1El.textContent = processNumber(numbers[0]) + convertOperatorToString(operator);
     operand2El.textContent = processNumber(numbers[1]);
 
-    if (operator == null){
+    if (operator == null) {
         operand1El.classList.add("large-operand");
         operand2El.classList.remove("large-operand");
     }
-    else{
+    else {
         operand1El.classList.remove("large-operand");
         operand2El.classList.add("large-operand");
     }
@@ -56,6 +65,24 @@ function convertOperatorToString(operator: Operator | null): string {
     return " " + str;
 }
 
-function processNumber(number : string){
-    return number.replace(".", ",");
+function processNumber(number: string) {
+    const [whole, fraction] = number.split(".");
+    const grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return fraction === undefined ? grouped : `${grouped}.${fraction}`;
+}
+
+function filterKey(key: string): string | undefined {
+    const validDirectKeys = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "x", "/", "=", "."]);
+    const validMappedKeys = new Map<string, string>([
+        ["*", "x"],
+        ["Backspace", "del"],
+        ["Escape", "reset"],
+        ["Enter", "="]
+    ]);
+
+    if (validDirectKeys.has(key)){
+        return key;
+    }
+
+    return validMappedKeys.get(key);
 }
