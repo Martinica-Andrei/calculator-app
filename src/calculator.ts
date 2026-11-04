@@ -130,17 +130,10 @@ export class Calculator {
         if (this._numbers[1].length === 0) {
             return;
         }
-
-        const [a, b] = this._numbers.map((v) => new BigNumber(v));
-        const operation = operatorToFuncMap.get(this._operator!)!;
-
-        let result = new BigNumber(operation(a, b)).toFixed();
-
-        if (["infinity", "nan"].includes(result.toLowerCase())) {
-            result = "";
-        }
-
+        
+        const [a, b] = this._numbers.map((n) => new BigNumber(n));
+        const result = operatorToFuncMap.get(this._operator!)!(a, b);
         this.reset();
-        this._numbers[0] = result;
+        this._numbers[0] = result.isFinite() ? result.toFixed() : "";
     }
 }
