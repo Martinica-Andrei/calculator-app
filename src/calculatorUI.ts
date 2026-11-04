@@ -31,11 +31,11 @@ function updateUI() {
     operand1El.textContent = processNumber(numbers[0]) + convertOperatorToString(operator);
     operand2El.textContent = processNumber(numbers[1]);
 
-    if (operator == null){
+    if (operator == null) {
         operand1El.classList.add("large-operand");
         operand2El.classList.remove("large-operand");
     }
-    else{
+    else {
         operand1El.classList.remove("large-operand");
         operand2El.classList.add("large-operand");
     }
@@ -56,6 +56,8 @@ function convertOperatorToString(operator: Operator | null): string {
     return " " + str;
 }
 
-function processNumber(number : string){
-    return number.replace(".", ",");
+function processNumber(number: string) {
+    const [whole, fraction] = number.split(".");
+    const grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return fraction === undefined ? grouped : `${grouped}.${fraction}`;
 }
