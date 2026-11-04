@@ -42,8 +42,8 @@ export class Calculator {
         const operator = stringToOperatorMap.get(value);
 
         if (operator != undefined) {
-            if ([Operator.Plus, Operator.Minus].includes(operator) && ["+", "-", ""].includes(this._numbers[0])) {
-                this._numbers[0] = value;
+            if ([Operator.Plus, Operator.Minus].includes(operator) && ["+", "-", ""].includes(this.activeNumber)) {
+                this._numbers[this._activeNumberIndex] = value;
                 this._previousValidInput = value;
                 return;
             }
@@ -144,7 +144,7 @@ export class Calculator {
     }
 
     private handleEqualOperator() {
-        if (this._numbers[1].length === 0) {
+        if (this._numbers[1].length === 0 || this.isNumberInvalid(this._numbers[1])) {
             return;
         }
 
