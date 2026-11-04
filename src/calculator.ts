@@ -32,6 +32,7 @@ export class Calculator {
     private readonly _numbers: [string, string] = ["", ""];
     private _activeNumberIndex: number = 0;
     private _operator: Operator | null = null;
+    private _previousValidInput : string | Operator | null = null;
 
     constructor() {
         this.reset();
@@ -43,6 +44,7 @@ export class Calculator {
         if (operator != undefined) {
             if ([Operator.Plus, Operator.Minus].includes(operator) && this._numbers[0].length === 0) {
                 this._numbers[0] = value;
+                this._previousValidInput = value;
                 return;
             }
             this.handleOperator(operator);
@@ -50,7 +52,7 @@ export class Calculator {
         }
 
         let newNumber: string;
-        if (this.activeNumber === "0" && value !== ".") {
+        if (this._previousValidInput === Operator.Equal || (this.activeNumber === "0" && value !== ".")) {
             newNumber = value;
         }
         else {
@@ -61,6 +63,7 @@ export class Calculator {
         }
 
         this._numbers[this._activeNumberIndex] = newNumber;
+        this._previousValidInput = value;
     }
 
     public get numbers() {
@@ -89,9 +92,11 @@ export class Calculator {
                 break;
             case Operator.Reset:
                 this.reset();
+                this._previousValidInput = operator;
                 break;
             case Operator.Delete:
                 this.removeLastCharFromActiveNumber();
+                this._previousValidInput = operator;
                 break;
             case Operator.Equal:
                 this.handleEqualOperator();
@@ -105,6 +110,7 @@ export class Calculator {
         }
         this._operator = operator;
         this._activeNumberIndex = 1;
+        this._previousValidInput = operator;
     }
 
     private reset() {
@@ -131,6 +137,11 @@ export class Calculator {
             return;
         }
         
+        this.applyOperation();
+        this._previousValidInput = Operator.Equal;
+    }
+
+    private applyOperation(){
         const [a, b] = this._numbers.map((n) => new BigNumber(n));
         const result = operatorToFuncMap.get(this._operator!)!(a, b);
         this.reset();
