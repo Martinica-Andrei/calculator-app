@@ -20,11 +20,11 @@ const stringToOperatorMap = new Map<string, Operator>([
     ["reset", Operator.Reset],
 ])
 
-const operatorToFuncMap = new Map<Operator, typeof add>([
-    [Operator.Plus, add],
-    [Operator.Minus, subtract],
-    [Operator.Multiplication, multiply],
-    [Operator.Division, divide],
+const operatorToFuncMap = new Map<Operator, (a: BigNumber, b: BigNumber) => BigNumber>([
+    [Operator.Plus, (a, b) => a.plus(b)],
+    [Operator.Minus, (a, b) => a.minus(b)],
+    [Operator.Multiplication, (a, b) => a.multipliedBy(b)],
+    [Operator.Division, (a, b) => a.dividedBy(b)],
 ]);
 
 export class Calculator {
@@ -143,20 +143,4 @@ export class Calculator {
         this.reset();
         this._numbers[0] = result;
     }
-}
-
-function add(a: number, b: number) {
-    return a + b;
-}
-
-function subtract(a: number, b: number) {
-    return a - b;
-}
-
-function multiply(a: number, b: number) {
-    return a * b;
-}
-
-function divide(a: number, b: number) {
-    return a / b;
 }
