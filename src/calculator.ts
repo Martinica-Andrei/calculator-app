@@ -131,7 +131,7 @@ export class Calculator {
             return;
         }
 
-        const [a, b] = this._numbers.map(parseFloat);
+        const [a, b] = this._numbers.map((v) => new BigNumber(v));
         const operation = operatorToFuncMap.get(this._operator!)!;
 
         let result = new BigNumber(operation(a, b)).toFixed();
