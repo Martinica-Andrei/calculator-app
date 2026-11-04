@@ -32,7 +32,7 @@ export class Calculator {
     private readonly _numbers: [string, string] = ["", ""];
     private _activeNumberIndex: number = 0;
     private _operator: Operator | null = null;
-    private _previousValidInput : string | Operator | null = null;
+    private _previousValidInput: string | Operator | null = null;
 
     constructor() {
         this.reset();
@@ -105,11 +105,16 @@ export class Calculator {
     }
 
     private handleNormalOperator(operator: Operator) {
-        if (this._activeNumberIndex > 0 || this.activeNumber.length === 0 || this.isNumberInvalid(this.activeNumber)) {
+        if (this.activeNumber.length === 0 || this.isNumberInvalid(this.activeNumber)) {
             return;
         }
-        this._operator = operator;
+
+        if (this._activeNumberIndex === 1) {
+            this.applyOperation();
+        }
+
         this._activeNumberIndex = 1;
+        this._operator = operator;
         this._previousValidInput = operator;
     }
 
@@ -136,12 +141,12 @@ export class Calculator {
         if (this._numbers[1].length === 0) {
             return;
         }
-        
+
         this.applyOperation();
         this._previousValidInput = Operator.Equal;
     }
 
-    private applyOperation(){
+    private applyOperation() {
         const [a, b] = this._numbers.map((n) => new BigNumber(n));
         const result = operatorToFuncMap.get(this._operator!)!(a, b);
         this.reset();
