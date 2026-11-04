@@ -105,8 +105,10 @@ export class Calculator {
     }
 
     private handleNormalOperator(operator: Operator) {
-        if (this.activeNumber.length === 0){
-            this._operator = operator;
+        if (this.activeNumber.length === 0) {
+            if (this._activeNumberIndex === 1) {
+                this._operator = operator;
+            }
             return;
         }
         if (this.isNumberInvalid(this.activeNumber)) {
